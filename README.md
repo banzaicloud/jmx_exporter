@@ -13,10 +13,10 @@ Agent is thus strongly encouraged.
 
 ## Running
 
-To run as a javaagent [download the jar](https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.13.0/jmx_prometheus_javaagent-0.13.0.jar) and run:
+To run as a javaagent [download the jar](https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.14.0/jmx_prometheus_javaagent-0.14.0.jar) and run:
 
 ```
-java -javaagent:./jmx_prometheus_javaagent-0.13.0.jar=8080:config.yaml -jar yourJar.jar
+java -javaagent:./jmx_prometheus_javaagent-0.14.0.jar=8080:config.yaml -jar yourJar.jar
 ```
 Metrics will now be accessible at http://localhost:8080/metrics
 
@@ -95,7 +95,7 @@ domain<beanpropertyName1=beanPropertyValue1, beanpropertyName2=beanPropertyValue
 Part     | Description
 ---------|------------
 domain   | Bean name. This is the part before the colon in the JMX object name.
-beanProperyName/Value | Bean properties. These are the key/values after the colon in the JMX object name.
+beanPropertyName/Value | Bean properties. These are the key/values after the colon in the JMX object name.
 keyN     | If composite or tabular data is encountered, the name of the attribute is added to this list.
 attrName | The name of the attribute. For tabular data, this will be the name of the column. If `attrNameSnakeCase` is set, this will be converted to snake case.
 value    | The value of the attribute.
