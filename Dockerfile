@@ -1,12 +1,13 @@
-FROM maven:3.6.3-adoptopenjdk-11
+FROM maven:3.6.3-adoptopenjdk-11 as build
 
-ADD ./ /build
+ADD ./ /src
 
-WORKDIR /build
+WORKDIR /src
 RUN mvn clean package
 
 
-FROM adoptopenjdk/openjdk11:alpine-jre
-COPY --from=0 /build/jmx_prometheus_javaagent/target/jmx_prometheus_javaagent-*.jar /opt/jmx_exporter/jmx_prometheus_javaagent-0.14.0.jar
+FROM adoptopenjdk:11.0.10_9-jre-hotspot
+COPY --from=build /src/jmx_prometheus_javaagent/target/jmx_prometheus_javaagent-*.jar /opt/jmx_exporter/
+RUN ln -s /opt/jmx_exporter/jmx_prometheus_javaagent-*.jar /jmx_prometheus_javaagent.jar
 
 CMD ["/bin/bash"]
